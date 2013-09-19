@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<txg:Texgit xmlns:txg="http://gilmatryx.googlepages.com/Texgit"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://gilmatryx.googlepages.com/Texgit file:////home/gilmar/WORKSPACE/TexgitSchema.xsd"
+	version="1.0-academic">
+
+	<FlatFile>
+		<layout>
+			<name>Arquivo-Remessa_BradescoCNAB400</name>
+			<version>Version 08, Published: 2009/09/30</version>
+			<description>
+				Layout para Cobrança.
+
+				Arquivo texto - padrão CNAB
+				Meio de Registro Transmissão de Dados 
+				Descrição de Registro - Tamanho 400 Bytes
+				Organização Sequencial
+
+				ARQUIVO FORMATO CNAB REMESSA, REGISTROS:
+				 
+				0 - Header Label
+				1 - Cobrança - Transação 
+				2 - Mensagem (opcional) 
+				3 - Rateio de Crédito (opcional)
+				7 – Sacador Avalista (opcional)
+				9 - Trailler (Papel de finalizador de lote)
+			</description>
+		</layout>
+		<GroupOfRecords>
+			<Record name="Header" description="Protocolo de comunicação" >
+				<GroupOfFields>
+					<IdType name="IDReg" value="0" length="1" position="1" />
+					<Field name="IdentificacaoRemessa" value="1" length="1" />
+					<Field name="LiteralRemessa" value="REMESSA" length="7" />
+					<Field name="CodigoDeServico" value="01" length="2" />
+					<Field name="LiteralServico" value="COBRANCA" length="15" />
+					<Field name="CodigoDaEmpresa" length="20" type="STRING" padding="ZERO_LEFT" />
+					<Field name="NomeDaEmpresa" length="30" />
+					<Field name="CodigoCompensacao" value="237" length="3" />
+					<Field name="NomeBanco" value="BRADESCO" length="15" />
+					<Field name="DataGravacaoArquivo" length="6" type="DATE" format="DATE_DDMMYY" />
+					<Field name="Filler1" length="8" />
+					<Field name="IdentificacaoSistema" value="MX" length="2" />
+					<Field name="NumeroSequencialRemessa" length="7" type="INTEGER" padding="ZERO_LEFT" />
+					<Field name="Filler2" length="277" />
+					<Field name="NumeroSequencialRegistro" type="INTEGER" length="6" padding="ZERO_LEFT" /> 
+					<!--<SequencialNumber name="sequencia" type="INTEGER" length="6" position="15" padding="ZERO_LEFT" />-->
+				</GroupOfFields>
+			</Record>
+			<Record name="TransacaoTitulo" repeatable="true">
+				<GroupOfFields>
+					<IdType name="IDReg" value="1" length="1" position="1" />
+					<Field name="DadosIgnorados1" length="69" />
+					<Field name="NossoNumero" length="11" padding="ZERO_LEFT" />
+					<Field name="DigitoNN" length="1" type="CHARACTER" />
+					<Field name="DadosIgnorados2" length="26" />
+					<Field name="CodigoOcorrencia" length="2" />
+					<Field name="NumeroDoDocumento" length="10" />
+					<Field name="Vencimento" length="6" type="DATE" format="DATE_DDMMYY" />
+					<Field name="Valor" type="BIGDECIMAL" length="13" format="DECIMAL_DD" />
+					<Field name="DadosIgnorados3" length="11" />
+					<Field name="Emissao" length="6" type="DATE" format="DATE_DDMMYY" />
+					<Field name="DadosIgnorados4" length="62" />
+					<Field name="TipoIdentificacaoSacado" length="2" type="INTEGER" padding="ZERO_LEFT" />
+					<Field name="IdentificacaoSacado" length="14" padding="ZERO_LEFT" />
+					<Field name="NomeSacado" length="40" />
+					<Field name="EnderecoSacado" length="40" />
+					<Field name="CEP-Prefixo" length="5" type="INTEGER" padding="ZERO_LEFT" />
+					<Field name="CEP-Sufixo" length="3" type="INTEGER" padding="ZERO_LEFT" />
+					<Field name="NomeSacado" length="40" />
+					<Field name="SacadorAvalista-CPRF" length="15" padding="ZERO_LEFT" />
+					<Field name="SacadorAvalista-Filler" length="2" />
+					<Field name="SacadorAvalista-Nome" length="43" />
+					<Field name="NumeroSequencialRegistro" type="INTEGER" length="6" padding="ZERO_LEFT" /> 					
+				</GroupOfFields>
+				<!--
+				<GroupOfInnerRecords>
+					<Record name="DadosBoleto">
+						<GroupOfFields>
+							<IdType name="IDReg" value="2" length="1" position="1" />
+							<Field name="Mensagem1" length="80" />
+							<Field name="Mensagem2" length="80" />
+							<Field name="Mensagem3" length="80" />
+							<Field name="Mensagem4" length="80" />
+							<Field name="Filler" length="45" />
+							<Field name="Carteira" length="3" type="INTEGER" padding="ZERO_LEFT" />
+							<Field name="Agencia" length="5" type="INTEGER" padding="ZERO_LEFT" />
+							<Field name="ContaCorrente" length="7" type="INTEGER" padding="ZERO_LEFT" />
+							<Field name="DigitoCC" length="1" type="CHARACTER" />
+							<Field name="NossoNumero" length="11" padding="ZERO_LEFT" />
+							<Field name="DigitoNN" length="1" type="CHARACTER" />
+							<SequencialNumber name="sequencia" type="INTEGER" length="6" position="13" padding="ZERO_LEFT" />
+						</GroupOfFields>
+					</Record>
+					 Nao trabalhamos com rateio, mas se estiver no arquivo mostre esses dados 
+					<Record name="RateioDeCredito">
+						<GroupOfFields>
+							<IdType name="IDReg" value="3" length="1" position="1" />
+							<Field name="IdentificacaoEmpresa" length="16" />
+							<Field name="NossoNumero" length="12" padding="ZERO_LEFT" />
+							<Field name="DadosIgnorados" length="371" />
+						</GroupOfFields>
+					</Record>
+				</GroupOfInnerRecords>
+				-->
+			</Record>
+			<Record name="Trailler">
+				<GroupOfFields>
+					<IdType name="IDReg" value="9" length="1" position="1" />
+					<Field name="Filler" length="393" />
+					<SequencialNumber name="sequencia" type="INTEGER" length="6" position="3" padding="ZERO_LEFT" />
+				</GroupOfFields>
+			</Record>
+		</GroupOfRecords>
+	</FlatFile>
+
+</txg:Texgit>

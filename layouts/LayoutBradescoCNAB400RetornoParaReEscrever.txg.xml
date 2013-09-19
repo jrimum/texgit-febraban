@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<txg:Texgit xmlns:txg="http://gilmatryx.googlepages.com/Texgit"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://gilmatryx.googlepages.com/Texgit file:////home/gilmar/WORKSPACE/TexgitSchema.xsd"
+	version="1.0-academic">
+
+	<FlatFile>
+		<layout>
+			<name>Arquivo-Retorno_BradescoCNAB400</name>
+			<version>Version 08, Published: 2009/09/30</version>
+			<description>
+			
+				Arquivo para ler e reescrever ocorrencias e motivos.
+			
+				Layout para Cobrança.
+
+				Arquivo texto - padrão CNAB
+				Meio de Registro Transmissão de Dados 
+				Descrição de Registro - Tamanho 400 Bytes
+				Organização Sequencial
+
+				ARQUIVO FORMATO CNAB RETORNO, REGISTROS:
+				 
+				0 - Header Label
+				1 - Cobrança - Transação 
+				3 - Rateio de Crédito (opcional)
+				9 - Trailler (Papel de finalizador de lote e totalizador)
+			</description>
+		</layout>
+		<GroupOfRecords>
+			<Record name="Header" description="Protocolo de comunicação">
+				<GroupOfFields>
+					<IdType name="IDReg" value="0" length="1" position="1" />
+					<Field name="DadosIgnorados" length="399" />
+				</GroupOfFields>
+			</Record>
+			<Record name="TransacaoTitulo" repeatable="true">
+				<GroupOfFields>
+					<IdType name="IDReg" value="1" length="1" position="1" />
+					<Field name="DadosIgnorados0" length="19" />
+					<!-- Zeros/Carteira/Agência/Conta Corrente -->
+					<Field name="DadosBancariosNFM" length="17" />
+					<Field name="NumeroControleDoParticipante" length="25" />
+					<Field name="Filler1" length="8" padding="ZERO_LEFT" />
+					<Field name="NossoNumeroComDigito" length="12" /> 
+					<Field name="DadosIgnorados1" length="26" />
+					<Field name="CodigoDeOcorrencia" length="2" type="INTEGER" value="0" padding="ZERO_LEFT" />
+					<Field name="DadosIgnorados2" length="185" />
+					<Field name="DataDoCredito" length="6" type="DATE" format="DATE_DDMMYY" padding="ZERO_LEFT" blankAccepted="true" />
+					<Field name="DadosIgnorados3" length="17" />
+					<Field name="CodigoDeMotivo1" length="2" type="INTEGER" value="0" padding="ZERO_LEFT" />
+					<Field name="CodigoDeMotivo2" length="2" type="INTEGER" value="0" padding="ZERO_LEFT" />
+					<Field name="CodigoDeMotivo3" length="2" type="INTEGER" value="0" padding="ZERO_LEFT" />
+					<Field name="CodigoDeMotivo4" length="2" type="INTEGER" value="0" padding="ZERO_LEFT" />
+					<Field name="CodigoDeMotivo5" length="2" type="INTEGER" value="0" padding="ZERO_LEFT" />
+					<Field name="DadosIgnorados4" length="72" />
+				</GroupOfFields>
+			</Record>
+			<Record name="Trailler">
+				<GroupOfFields>
+					<IdType name="IDReg" value="9" length="1" position="1" />
+					<Field name="DadosIgnorados" length="399" />
+				</GroupOfFields>
+			</Record>
+		</GroupOfRecords>
+	</FlatFile>
+
+</txg:Texgit>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<txg:Texgit xmlns:txg="http://gilmatryx.googlepages.com/Texgit"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://gilmatryx.googlepages.com/Texgit file:////home/gilmar/WORKSPACE/TexgitSchema.xsd"
+	version="1.0-academic">
+
+	<FlatFile>
+		<layout>
+			<name>Arquivo-Retorno_BancoDoBrasilCBR643</name>
+			<version>Version 0008, Published: 2006/04/25</version>
+			<description>
+			
+				Arquivo para ler e reescrever ocorrencias e motivos.
+			
+				Layout para Cobrança.
+
+				a) - Nome do Arquivo /DATA SET NAME/ = CBR643.,             
+          	    b) - Tamanho do registro= 400 bytes.,                       
+                c) - Organizacao = sequencial.,                             
+                d) - Formato dos registros =                                
+                   - FB /Fixos Blocados/                                  
+                   - Formato dos campos /9/ - numérico                    
+                                    /X/ - alfanumérico
+                e) - Os campos do arquivo retorno que possuirem DATA no formato  /DDMMAA/, conterao..                                        
+                e.1- para ano igual a 2001 /DDMMAA/ - /AA/ igual a 01.,     
+                e.2- para ano igual a 2002 /DDMMAA/ - /AA/ igual a 02., 
+                     e assim sucessivamente ateh o ano 2069.                
+                
+				ARQUIVO FORMATO CBR RETORNO, REGISTROS:
+				 
+				1  - HEADER - registro de abertura do arquivo.             
+                Contem as informacoes da empresa convenente e         
+                agencia centralizadora do convenio.,                  
+                
+                2  - DETALHE - contem as informacoes detalhadas do         
+                titulo, cedente, sacado e instrucoes para o           
+                processamento                                                                                    
+                
+                4  - TRAILLER - eh o registro de encerramento do arquivo.  
+			</description>
+		</layout>
+		<GroupOfRecords>
+			<Record name="Header" description="Protocolo de comunicação">
+				<GroupOfFields>
+					<IdType name="IDReg" value="0" length="1" position="1" />
+					<Field name="DadosIgnorados" length="399" />
+				</GroupOfFields>
+			</Record>
+			<Record name="TransacaoTitulo" repeatable="true">
+				<GroupOfFields>
+					<IdType name="IDReg" value="1" length="1" position="1" />
+					<Field name="DadosIgnorados1" length="79" />
+					<Field name="CodigoDeMotivoDeOcorrencia" length="2" type="INTEGER" value="0" padding="ZERO_LEFT" />
+					<Field name="DadosIgnorados2" length="26" />
+					<Field name="CodigoDeOcorrencia" length="2" type="INTEGER" value="0" padding="ZERO_LEFT" />
+					<Field name="DadosIgnorados3" length="290" />
+				</GroupOfFields>
+			</Record>
+			<Record name="Trailler">
+				<GroupOfFields>
+					<IdType name="IDReg" value="9" length="1" position="1" />
+					<Field name="DadosIgnorados" length="399" />
+				</GroupOfFields>
+			</Record>
+		</GroupOfRecords>
+	</FlatFile>
+
+</txg:Texgit>

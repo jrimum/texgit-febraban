@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<txg:Texgit xmlns:txg="http://gilmatryx.googlepages.com/Texgit"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://gilmatryx.googlepages.com/Texgit file:////home/gilmar/WORKSPACE/TexgitSchema.xsd"
+            version="1.0-academic">
+
+
+    <FlatFile>
+        <layout>
+            <name>
+                Layout de Importação Movimento Financeiro RedeCard
+            </name>
+            <version>Versão para Importação V 1.0</version>
+            <description>
+                Através deste layout, você poderá ler arquivos para
+                serem importados no Módulo Importação Movimento Financeiro RedeCard.
+            </description>
+        </layout>
+        <GroupOfRecords>
+            <Record name="HeaderMovFinRedeCard">
+                <GroupOfFields>
+                    <IdType name="TipoReg" value="030" length="3" position="1" />
+                    <Field name="DataEmissao" type="DATE" length="8">
+                        <Formatter type="DATE" format="ddMMyyyy" />
+                    </Field>
+                    <Field name="redecard" type="STRING" value="Redecard" length="8" />
+                    <Field name="extMovFin" type="STRING" value="Extrato de Movimentacao Financeira" length="34" />
+                    <Field name="NomeComercial" type="STRING" length="22" padding="WHITE_SPACE_RIGHT"/>
+                    <Field name="SequenciaMovimento" type="INTEGER" length="6" padding="ZERO_LEFT" />
+                    <Field name="NPVGrupoOuMatriz" type="INTEGER" length="9" padding="ZERO_LEFT" />
+                    <Field name="TipoProcessamento" type="STRING" length="15" padding="WHITE_SPACE_RIGHT"/>
+                    <Field name="VersaoArquivo" type="STRING" length="20" padding="WHITE_SPACE_RIGHT"/>
+                    <Field name="constante" type="STRING" length="899" padding="WHITE_SPACE_RIGHT"/>
+                </GroupOfFields>
+            </Record>
+            <Record name="HeaderMatriz">
+                <GroupOfFields>
+                    <IdType name="TipoReg" value="032" length="3" position="1" />
+                    <Field name="NPVMatriz" type="STRING"  length="9" />
+                    <Field name="NomeComercialMatriz" type="STRING" length="22" padding="WHITE_SPACE_RIGHT"/>
+                    <Field name="constante" type="STRING" length="990" padding="WHITE_SPACE_RIGHT"/>
+                </GroupOfFields>
+            </Record>
+            <Record name="OrdemDeCredito" repeatable="true">
+                <GroupOfFields>
+                    <IdType name="TipoReg" value="034" length="3" position="1" />
+                    <Field name="NumeroPVCentralizador" type="INTEGER" length="9" padding="ZERO_LEFT" />
+                    <Field name="NumeroDocumento" type="STRING" length="11" padding="ZERO_LEFT" />
+                    <Field name="DataDoLancamento" type="DATE" length="8">
+                        <Formatter type="DATE" format="ddMMyyyy" />
+                    </Field>
+                    <Field name="ValorDoLancamento" type="BIGDECIMAL" length="15" format="DECIMAL_DD" padding="ZERO_LEFT" />
+                    <Field name="C" type="STRING" value="C" length="1" />
+                    <Field name="Banco" type="INTEGER" length="3" padding="ZERO_LEFT" />
+                    <Field name="Agencia" type="INTEGER" length="6" padding="ZERO_LEFT" />
+                    <Field name="ContaCorrente" type="INTEGER" length="11" padding="ZERO_LEFT" />
+                    <Field name="DataDoMovimento" type="DATE" length="8">
+                        <Formatter type="DATE" format="ddMMyyyy" />
+                    </Field>
+                    <Field name="NumeroRV" type="INTEGER" length="9" padding="ZERO_LEFT" />
+                    <Field name="DataRV" type="DATE" length="8">
+                        <Formatter type="DATE" format="ddMMyyyy" />
+                    </Field>
+                    <Field name="Bandeira" type="INTEGER" length="1" padding="ZERO_LEFT" />
+                    <Field name="TipoTransacao" type="INTEGER" length="1" padding="ZERO_LEFT" />
+                    <Field name="ValorBruto" type="BIGDECIMAL" length="15" format="DECIMAL_DD" padding="ZERO_LEFT" />
+                    <Field name="ValorTaxaDesconto" type="BIGDECIMAL" length="15" format="DECIMAL_DD" padding="ZERO_LEFT" />
+                    <Field name="NumeroDaParcelaTotal" type="STRING" length="5" padding="WHITE_SPACE_RIGHT"/>
+                    <Field name="StatusCredito" type="STRING" length="2" padding="WHITE_SPACE_RIGHT"/>
+                    <Field name="NPVOriginal" type="INTEGER" length="2" padding="ZERO_LEFT" />
+                                        
+                    <Field name="constante" type="STRING" length="891" padding="WHITE_SPACE_RIGHT"/>
+                </GroupOfFields>
+				<GroupOfInnerRecords>
+            <Record name="TotalizadorOrdemDeCredito" repeatable="true">
+                <GroupOfFields>
+                    <IdType name="TipoRegistro" value="037" length="3" position="1" />
+                    <Field name="NumeroDoPV" type="INTEGER" length="9" padding="ZERO_LEFT" />
+                    <Field name="Brancos" type="STRING" value="       " length="7" padding="WHITE_SPACE_RIGHT"/>
+                    <Field name="DataDoCredito" type="DATE" length="8">
+                        <Formatter type="DATE" format="ddMMyyyy" />
+                    </Field>
+                    <Field name="ValorTotalCredito" type="BIGDECIMAL" length="15" format="DECIMAL_DD" padding="ZERO_LEFT" />
+                    <Field name="Brancos1" type="STRING" value=" " length="1" padding="WHITE_SPACE_RIGHT"/>
+                    <Field name="Banco" type="INTEGER" length="3" padding="ZERO_LEFT" />
+                    <Field name="Agencia" type="INTEGER" length="6" padding="ZERO_LEFT" />
+                    <Field name="ContaCorrente" type="LONG" length="11" padding="ZERO_LEFT" />
+                    <Field name="DataGeracaoArquivo" type="DATE" length="8">
+                        <Formatter type="DATE" format="ddMMyyyy" />
+                    </Field>
+                    <Field name="DataDoCreditoAntecipado" type="DATE" length="8">
+                        <Formatter type="DATE" format="ddMMyyyy" />
+                    </Field>
+                    <Field name="ValorTotalCredAntecipado" type="BIGDECIMAL" length="15" format="DECIMAL_DD" padding="ZERO_LEFT" />
+                    <Field name="constante" type="STRING" length="930" padding="WHITE_SPACE_RIGHT"/>
+				
+               </GroupOfFields>
+					</Record>
+				</GroupOfInnerRecords>
+            </Record>
+            <Record name="DesagDeParc" repeatable="true">
+                <GroupOfFields>
+                    <IdType name="TipoReg" value="049" length="3" position="1" />
+                    <Field name="NumeroPVOriginal" type="INTEGER" length="9" padding="ZERO_LEFT" />
+                    <Field name="NumeroRVOriginal" type="INTEGER" length="9" padding="ZERO_LEFT" />
+                    <Field name="NumeroReferencia" type="LONG" length="15" padding="ZERO_LEFT" />
+                    <Field name="DataDoCredito" type="DATE" length="8">
+                        <Formatter type="DATE" format="ddMMyyyy" />
+                    </Field>
+                    <Field name="NovoValorDaParcela" type="BIGDECIMAL" length="15" format="DECIMAL_DD" padding="ZERO_LEFT" />
+                    <Field name="ValorOriginalDaParcelaAlterada" type="BIGDECIMAL" length="15" format="DECIMAL_DD" padding="ZERO_LEFT" />
+                    <Field name="ValorDoAjuste" type="BIGDECIMAL" length="15" format="DECIMAL_DD" padding="ZERO_LEFT" />
+                    <Field name="DataDoCancelamento" type="DATE" length="8">
+                        <Formatter type="DATE" format="ddMMyyyy" />
+                    </Field>
+                    <Field name="ValorDoRVoriginal" type="BIGDECIMAL" length="15" format="DECIMAL_DD" padding="ZERO_LEFT" />
+                    <Field name="ValordoCancelamentoSolicitado" type="BIGDECIMAL" length="15" format="DECIMAL_DD" padding="ZERO_LEFT" />
+                    <Field name="NumeroCartao" type="STRING" length="16" padding="ZERO_LEFT" />
+                    <Field name="DataDaTransacao" type="DATE" length="8">
+                        <Formatter type="DATE" format="ddMMyyyy" />
+                    </Field>
+                    <Field name="NumeroNSU" type="LONG" length="12" padding="ZERO_LEFT" />
+                    <Field name="TipoDebito" type="INTEGER" length="1" padding="ZERO_LEFT" />
+                    <Field name="NumeroParcela" type="INTEGER" length="2" padding="ZERO_LEFT" />
+                    <Field name="constante" type="STRING" length="858" padding="WHITE_SPACE_RIGHT"/>
+                </GroupOfFields>
+            </Record>
+            <Record name="TotalizadorMatriz">
+                <GroupOfFields>
+                    <IdType name="TipoRegistro" value="050" length="3" position="1" />
+                    <Field name="NumeroDoPVMatriz" type="INTEGER" length="9" padding="ZERO_LEFT" />
+                    <Field name="QtdTotalResumoMatriz" type="INTEGER"  length="6" padding="ZERO_LEFT" />
+                    <Field name="ValorTotalCreditosNormais" type="BIGDECIMAL" length="15" format="DECIMAL_DD" padding="ZERO_LEFT" />
+                    <Field name="QtdTotalCreditosAntecipados" type="INTEGER"  length="6" padding="ZERO_LEFT" />
+                    <Field name="ValorTotalCreditosAntecipados" type="BIGDECIMAL" length="15" format="DECIMAL_DD" padding="ZERO_LEFT" />
+                    <Field name="QtdAjustesACredito" type="INTEGER"  length="4" padding="ZERO_LEFT" />
+                    <Field name="ValorTotalAjustesCredito" type="BIGDECIMAL" length="15" format="DECIMAL_DD" padding="ZERO_LEFT" />
+                    <Field name="QtdAjustesAdebito" type="INTEGER"  length="6" padding="ZERO_LEFT" />
+                    <Field name="ValorTotalAjustesAdebito" type="BIGDECIMAL" length="15" format="DECIMAL_DD" padding="ZERO_LEFT" />
+                    <Field name="constante" type="STRING" length="930" padding="WHITE_SPACE_RIGHT"/>
+                </GroupOfFields>
+            </Record>
+            <Record name="Trailler">
+                <GroupOfFields>
+                    <IdType name="TipoRegistro" value="052" length="3" position="1" />
+                    <Field name="QtdMatrizesArquivo" type="INTEGER"  length="4" padding="ZERO_LEFT" />
+                    <Field name="QtdRegistrosArquivo" type="INTEGER"  length="6" padding="ZERO_LEFT" />
+                    <Field name="NumeroDoPVGrupo" type="INTEGER" length="9" padding="ZERO_LEFT" />
+                    <Field name="QtdTotResumoGrupo" type="INTEGER" length="4" padding="ZERO_LEFT" />
+                    <Field name="ValorTotalCreditosNormais" type="BIGDECIMAL" length="15" format="DECIMAL_DD" padding="ZERO_LEFT" />
+                    <Field name="QtdTotalCreditosAntecipados" type="INTEGER"  length="6" padding="ZERO_LEFT" />
+                    <Field name="ValorTotalAntecipados" type="BIGDECIMAL" length="15" format="DECIMAL_DD" padding="ZERO_LEFT" />
+                    <Field name="QtdAjustesACredito" type="INTEGER"  length="4" padding="ZERO_LEFT" />
+                    <Field name="ValorTotalAjustesCredito" type="BIGDECIMAL" length="15" format="DECIMAL_DD" padding="ZERO_LEFT" />
+                    <Field name="QtdAjustesAdebito" type="INTEGER"  length="4" padding="ZERO_LEFT" />
+                    <Field name="ValorTotalAjustesAdebito" type="BIGDECIMAL" length="15" format="DECIMAL_DD" padding="ZERO_LEFT" />
+                    <Field name="constante" type="STRING" length="924" padding="WHITE_SPACE_RIGHT"/>
+                </GroupOfFields>
+            </Record>
+        </GroupOfRecords>
+    </FlatFile>
+</txg:Texgit>

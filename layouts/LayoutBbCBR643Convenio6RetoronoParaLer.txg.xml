@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<txg:Texgit xmlns:txg="http://gilmatryx.googlepages.com/Texgit"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://gilmatryx.googlepages.com/Texgit file:////home/gilmar/WORKSPACE/TexgitSchema.xsd"
+	version="1.0-academic">
+
+	<FlatFile>
+		<layout>
+			<name>Arquivo-Retorno_BancoDoBrasilCBR643</name>
+			<version>Version 0008, Published: 2006/04/25</version>
+			<description>
+				Layout para Cobrança.
+
+				a) - Nome do Arquivo /DATA SET NAME/ = CBR643.,             
+          	    b) - Tamanho do registro= 400 bytes.,                       
+                c) - Organizacao = sequencial.,                             
+                d) - Formato dos registros =                                
+                   - FB /Fixos Blocados/                                  
+                   - Formato dos campos /9/ - numérico                    
+                                    /X/ - alfanumérico
+                e) - Os campos do arquivo retorno que possuirem DATA no formato  /DDMMAA/, conterao..                                        
+                e.1- para ano igual a 2001 /DDMMAA/ - /AA/ igual a 01.,     
+                e.2- para ano igual a 2002 /DDMMAA/ - /AA/ igual a 02., 
+                     e assim sucessivamente ateh o ano 2069.                
+                
+				ARQUIVO FORMATO CBR RETORNO, REGISTROS:
+				 
+				1  - HEADER - registro de abertura do arquivo.             
+                Contem as informacoes da empresa convenente e         
+                agencia centralizadora do convenio.,                  
+                
+                2  - DETALHE - contem as informacoes detalhadas do         
+                titulo, cedente, sacado e instrucoes para o           
+                processamento                                         
+                
+                3  - DETALHE-AUXILIAR - contem as informacoes detalhadas   
+                sobre o partilhamento do titulo e a destinacao dos    
+                creditos.,                                            
+                
+                4  - TRAILLER - eh o registro de encerramento do arquivo.  
+			</description>
+		</layout>
+		<GroupOfRecords>
+			<Record name="Header" description="Protocolo de comunicação">
+				<GroupOfFields>
+					<IdType name="IDReg" value="0" length="1" position="1" />
+					<Field name="IdentificacaoRetorno" value="2" length="1" />
+					<Field name="LiteralRetorno" value="RETORNO" length="7" />
+					<Field name="CodigoDeServico" value="01" length="2" padding="ZERO_LEFT" />
+					<Field name="LiteralServico" value="COBRANCA" length="8" />
+					<Field name="Filler1" length="7" />
+					<Field name="PrefixoDaAgencia" length="4" type="INTEGER" padding="ZERO_LEFT" />
+					<Field name="PrefixoDaAgenciaDV" length="1" type="CHARACTER" />
+					<Field name="CodigoDoCedente" length="8" type="INTEGER" padding="ZERO_LEFT" />
+					<Field name="CodigoDoCedenteDV" length="1" type="CHARACTER" />
+					<Field name="CodigoDaEmpresa" length="6" type="INTEGER" padding="ZERO_LEFT" />
+					<Field name="NomeDaEmpresa" length="30" />
+					<Field name="CodigoCompensacao" value="001" length="3" padding="ZERO_LEFT" />
+					<Field name="NomeBanco" value="BANCO DO BRASIL" length="15" />
+					<Field name="DataGravacaoArquivo" length="6" type="DATE" format="DATE_DDMMYY" />
+					<Field name="NumeroDoAvisoBancario" length="7" />
+					<Field name="Filler2" length="287" />
+					<Field name="NumeroSequencialRegistro" type="INTEGER" length="6" padding="ZERO_LEFT" />
+				</GroupOfFields>
+			</Record>
+			<Record name="TransacaoTitulo" repeatable="true">
+				<GroupOfFields>
+					<IdType name="IDReg" value="1" length="1" position="1" />
+					<Field name="DadosIgnorados1" length="36" />
+					<Field name="NumeroControleDoParticipante" length="25" />
+					<Field name="NossoNumeroComDigito" length="12" padding="ZERO_LEFT" /> 
+					<Field name="TipoDeCobranca" length="1" type="INTEGER" value="0" padding="ZERO_LEFT"  />
+					<Field name="TipoDeCobrancaAnterior" length="1" type="INTEGER" value="0" padding="ZERO_LEFT"  />	
+					<Field name="DiasParaCalculo" length="4" type="INTEGER" value="0" padding="ZERO_LEFT"  />	
+					<Field name="CodigoDeMotivoDeOcorrencia" length="2" type="INTEGER" value="0" padding="ZERO_LEFT" />
+					<Field name="PrefixoDoTitulo" length="3" />
+					<Field name="VariacaoDaCarteira" length="3" />
+					<Field name="ContaCaucao" length="1" />
+					<Field name="DadosIgnorados2" length="16" />
+					<Field name="Filler1" length="1" />
+					<Field name="Carteira" length="2" type="INTEGER" value="0" padding="ZERO_LEFT" />
+					<Field name="CodigoDeOcorrencia" length="2" type="INTEGER" value="0" padding="ZERO_LEFT" />
+					<Field name="DataDaOcorrencia" length="6" type="DATE" format="DATE_DDMMYY" padding="ZERO_LEFT" />
+					<Field name="NumeroDoDocumento" length="10" />
+					<Field name="NossoNumeroComDigito-Repetido" length="20" />
+					<Field name="Vencimento" length="6" type="DATE" format="DATE_DDMMYY" padding="ZERO_LEFT" />
+					<Field name="Valor" type="BIGDECIMAL" length="13" value="0" format="DECIMAL_DD" padding="ZERO_LEFT" /> 
+					<Field name="CodigoCompensacaoBancoRecebedor" value="0" length="3" padding="ZERO_LEFT" />
+					<Field name="PrefixoDaAgenciaRecebedora" type="INTEGER" value="0" length="4" padding="ZERO_LEFT" />
+					<Field name="DV-DaAgenciaRecebedoraOuServicoDeCompensacao" length="1" type="CHARACTER" />
+					<Field name="EspecieDeTitulo" type="INTEGER" length="2" padding="ZERO_LEFT" />
+					<Field name="DataDoCredito" length="6" type="DATE" format="DATE_DDMMYY" />
+					<Field name="ValorDaTarifa" type="BIGDECIMAL" length="7" value="0" format="DECIMAL_DD" padding="ZERO_LEFT" />
+					<Field name="OutrasDespesas" type="BIGDECIMAL" length="13" value="0" format="DECIMAL_DD" padding="ZERO_LEFT" />
+					<Field name="JurosDoDesconto" type="BIGDECIMAL" length="13" value="0" format="DECIMAL_DD" padding="ZERO_LEFT" />
+					<Field name="IOF_DoDesconto" type="BIGDECIMAL" length="13" value="0" format="DECIMAL_DD" padding="ZERO_LEFT" />
+					<Field name="ValorDoAbatimento" type="BIGDECIMAL" length="13" value="0" format="DECIMAL_DD" padding="ZERO_LEFT" />
+					<Field name="DescontoConcedido" type="BIGDECIMAL" length="13" value="0" format="DECIMAL_DD" padding="ZERO_LEFT" />
+					<Field name="ValorRecebido" type="BIGDECIMAL" length="13" value="0" format="DECIMAL_DD" padding="ZERO_LEFT" />
+					<Field name="JurosDeMora" type="BIGDECIMAL" length="13" value="0" format="DECIMAL_DD" padding="ZERO_LEFT" />
+					<Field name="OutrosRecebimentos" type="BIGDECIMAL" length="13" value="0" format="DECIMAL_DD" padding="ZERO_LEFT" />
+					<Field name="AbatimentoNaoAproveitadoPeloSacado" type="BIGDECIMAL" length="13" value="0" format="DECIMAL_DD" padding="ZERO_LEFT" />
+					<Field name="ValorDoLancamento" type="BIGDECIMAL" length="13" value="0" format="DECIMAL_DD" padding="ZERO_LEFT" />
+					<Field name="IndicativoDeLancamento" type="INTEGER" length="1" />
+					<Field name="IndicativoDeValor" type="INTEGER" length="1" />
+					<Field name="ValorDoAjuste" type="BIGDECIMAL" length="12" value="0" format="DECIMAL_DD" padding="ZERO_LEFT" />
+					<Field name="DadosIgnorados2" length="55" />
+					<Field name="Filler2" length="5" /> 
+					<Field name="OrigemDoPagamento" blankAccepted="true" length="2" type="INTEGER" value="0" padding="ZERO_LEFT"/>
+					<Field name="NumeroSequencialRegistro" type="INTEGER" length="6" padding="ZERO_LEFT" />
+				</GroupOfFields>
+			</Record>
+			<Record name="Trailler">
+				<GroupOfFields>
+					<IdType name="IDReg" value="9" length="1" position="1" />
+					<Field name="DadosIgnorados1" length="16" />
+					<Field name="QuantidadeDeTitulosEmCobranca" length="8" type="INTEGER" padding="ZERO_LEFT" />
+					<Field name="ValorTotalEmCobranca" type="BIGDECIMAL" length="14" format="DECIMAL_DD" padding="ZERO_LEFT" />
+					<Field name="NumeroDoAvisoBancario" length="8" />
+					<Field name="DadosIgnorados2" length="347" />
+					<Field name="NumeroSequencialRegistro" type="INTEGER" length="6" padding="ZERO_LEFT" />
+				</GroupOfFields>
+			</Record>
+		</GroupOfRecords>
+	</FlatFile>
+
+</txg:Texgit>

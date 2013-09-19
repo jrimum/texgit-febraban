@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<txg:Texgit xmlns:txg="http://gilmatryx.googlepages.com/Texgit"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://gilmatryx.googlepages.com/Texgit file:////home/gilmar/WORKSPACE/TexgitSchema.xsd"
+	version="1.0-academic">
+
+	<FlatFile>
+		<layout>
+			<name>Arquivo-Retorno_BradescoCNAB400</name>
+			<version>Version 08, Published: 2009/09/30</version>
+			<description>
+				Layout para Cobrança.
+
+				Arquivo texto - padrão CNAB
+				Meio de Registro Transmissão de Dados 
+				Descrição de Registro - Tamanho 400 Bytes
+				Organização Sequencial
+
+				ARQUIVO FORMATO CNAB RETORNO, REGISTROS:
+				 
+				0 - Header Label
+				1 - Cobrança - Transação 
+				3 - Rateio de Crédito (opcional)
+				9 - Trailler (Papel de finalizador de lote e totalizador)
+			</description>
+		</layout>
+		<GroupOfRecords>
+			<Record name="Header" description="Protocolo de comunicação">
+				<GroupOfFields>
+					<IdType name="IDReg" value="0" length="1" position="1" />
+					<Field name="IdentificacaoRetorno" value="1" length="1" />
+					<Field name="LiteralRetorno" value="RETORNO" length="7" />
+					<Field name="CodigoDeServico" value="01" length="2" />
+					<Field name="LiteralServico" value="COBRANCA" length="15" />
+					<Field name="CodigoDaEmpresa" length="20" type="STRING" padding="ZERO_LEFT" />
+					<Field name="NomeDaEmpresa" length="30" />
+					<Field name="CodigoCompensacao" value="237" length="3" />
+					<Field name="NomeBanco" value="BRADESCO" length="15" />
+					<Field name="DataGravacaoArquivo" length="6" type="DATE" format="DATE_DDMMYY" />
+					<Field name="Filler1" length="8" />
+					<Field name="NumeroDoAvisoBancario" length="5" />
+					<Field name="Filler2" length="266" />
+					<Field name="DataDoCredito" length="6" type="DATE" format="DATE_DDMMYY" />
+					<Field name="Filler3" length="9" />
+					<Field name="NumeroSequencialRegistro" type="INTEGER" length="6" padding="ZERO_LEFT" />
+				</GroupOfFields>
+			</Record>
+			<Record name="TransacaoTitulo" repeatable="true">
+				<GroupOfFields>
+					<IdType name="IDReg" value="1" length="1" position="1" />
+					<Field name="DadosIgnorados1" length="36" />
+					<Field name="NumeroControleDoParticipante" length="25" />
+					<Field name="Filler1" length="8" padding="ZERO_LEFT" />
+					<Field name="NossoNumeroComDigito" length="12" /> 
+					<Field name="DadosIgnorados2" length="25" /> 
+					<Field name="Carteira" length="1" type="INTEGER" value="0" />
+					<Field name="CodigoDeOcorrencia" length="2" type="INTEGER" value="0" padding="ZERO_LEFT" />
+					<Field name="DataDaOcorrencia" length="6" type="DATE" format="DATE_DDMMYY" padding="ZERO_LEFT" />
+					<Field name="NumeroDoDocumento" length="10" />
+					<Field name="NossoNumeroComDigito-Repetido" length="20" />
+					<Field name="Vencimento" length="6" type="DATE" format="DATE_DDMMYY" padding="ZERO_LEFT" />
+					<Field name="Valor" type="BIGDECIMAL" length="13" value="0" format="DECIMAL_DD" padding="ZERO_LEFT" /> 
+					<Field name="CodigoCompensacaoBancoRecebedor" value="0" length="3" padding="ZERO_LEFT" />
+					<Field name="PrefixoDaAgenciaRecebedora" type="INTEGER" value="0" length="5" padding="ZERO_LEFT" blankAccepted="true"/>
+					<Field name="EspecieDeTitulo" length="2" />
+					<Field name="ValorDaTarifa" type="BIGDECIMAL" length="13" value="0" format="DECIMAL_DD" padding="ZERO_LEFT" />
+					<Field name="OutrasDespesas" type="BIGDECIMAL" length="13" value="0" format="DECIMAL_DD" padding="ZERO_LEFT" />
+					<Field name="JurosDoDesconto" type="BIGDECIMAL" length="13" value="0" format="DECIMAL_DD" padding="ZERO_LEFT" />
+					<Field name="IOF_DoDesconto" type="BIGDECIMAL" length="13" value="0" format="DECIMAL_DD" padding="ZERO_LEFT" />
+					<Field name="ValorDoAbatimento" type="BIGDECIMAL" length="13" value="0" format="DECIMAL_DD" padding="ZERO_LEFT" />
+					<Field name="DescontoConcedido" type="BIGDECIMAL" length="13" value="0" format="DECIMAL_DD" padding="ZERO_LEFT" />
+					<Field name="ValorRecebido" type="BIGDECIMAL" length="13" value="0" format="DECIMAL_DD" padding="ZERO_LEFT" />
+					<Field name="JurosDeMora" type="BIGDECIMAL" length="13" value="0" format="DECIMAL_DD" padding="ZERO_LEFT" />
+					<Field name="OutrosRecebimentos" type="BIGDECIMAL" length="13" value="0" format="DECIMAL_DD" padding="ZERO_LEFT" />
+					<Field name="Filler2" length="2" />
+					<Field name="MotivoConfirmacaoDeProtesto" length="1" type="CHARACTER" />
+					<Field name="DataDoCredito" length="6" type="DATE" format="DATE_DDMMYY" padding="ZERO_LEFT" blankAccepted="true" />
+					<Field name="OrigemDoPagamento" blankAccepted="true" length="3" type="INTEGER" value="0" padding="ZERO_LEFT"/>
+					<Field name="DadosIgnorados4" length="14" />
+<!--					 Campo Inteligente tamanho 10 ex: [0005712341]= rjeicao 00, rejeicao 05, rejeicao 71, .. -->
+					<Field name="CodigoDeMotivo1" length="2" type="INTEGER" value="0" padding="ZERO_LEFT" />
+					<Field name="CodigoDeMotivo2" length="2" type="INTEGER" value="0" padding="ZERO_LEFT" />
+					<Field name="CodigoDeMotivo3" length="2" type="INTEGER" value="0" padding="ZERO_LEFT" />
+					<Field name="CodigoDeMotivo4" length="2" type="INTEGER" value="0" padding="ZERO_LEFT" />
+					<Field name="CodigoDeMotivo5" length="2" type="INTEGER" value="0" padding="ZERO_LEFT" />
+					<Field name="Filler3" length="40" />
+					<Field name="NumeroDoCartorio" length="2" />
+					<Field name="NumeroDoProtocolo" length="10" />
+					<Field name="Filler4" length="14" />
+					<Field name="NumeroSequencialRegistro" type="INTEGER" length="6" padding="ZERO_LEFT" />
+				</GroupOfFields>
+			</Record>
+			<Record name="Trailler">
+				<GroupOfFields>
+					<IdType name="IDReg" value="9" length="1" position="1" />
+					<Field name="DadosIgnorados1" length="16" />
+					<Field name="QuantidadeDeTitulosEmCobranca" length="8" type="INTEGER" padding="ZERO_LEFT" value="0" />
+					<Field name="ValorTotalEmCobranca" type="BIGDECIMAL" length="14" format="DECIMAL_DD" padding="ZERO_LEFT" value="0" />
+					<Field name="DadosIgnorados2" length="18" />
+					<Field name="QtdEntradaConfirmadaC02" length="5" type="INTEGER" padding="ZERO_LEFT" value="0" />
+					<Field name="ValEntradaConfirmadaC02" type="BIGDECIMAL" length="12" format="DECIMAL_DD" padding="ZERO_LEFT" value="0" />
+					<Field name="ValTotLiquidacaoC06" type="BIGDECIMAL" length="12" format="DECIMAL_DD" padding="ZERO_LEFT" value="0" />
+					<Field name="QtdLiquidacaoC06" length="5" type="INTEGER" padding="ZERO_LEFT" value="0" />
+					<Field name="ValLiquidacaoC06" type="BIGDECIMAL" length="12" format="DECIMAL_DD" padding="ZERO_LEFT" />
+					<Field name="QtdBaixaC09C10" length="5" type="INTEGER" padding="ZERO_LEFT" value="0" />
+					<Field name="ValBaixaC09C10" type="BIGDECIMAL" length="12" format="DECIMAL_DD" padding="ZERO_LEFT" value="0" />
+					<Field name="QtdAbatimentoCanceladoC13" length="5" type="INTEGER" padding="ZERO_LEFT" value="0" />
+					<Field name="ValAbatimentoCanceladoC13" type="BIGDECIMAL" length="12" format="DECIMAL_DD" padding="ZERO_LEFT" value="0" />
+					<Field name="QtdVencimentoAlteradoC14" length="5" type="INTEGER" padding="ZERO_LEFT" value="0" />
+					<Field name="ValVencimentoAlteradoC14" type="BIGDECIMAL" length="12" format="DECIMAL_DD" padding="ZERO_LEFT" value="0" />
+					<Field name="QtdAbatimentoConcedidoC12" length="5" type="INTEGER" padding="ZERO_LEFT" value="0" />
+					<Field name="ValAbatimentoConcedidoC12" type="BIGDECIMAL" length="12" format="DECIMAL_DD" padding="ZERO_LEFT" value="0" />
+					<Field name="QtdConfirmacaoInstProtestoC19" length="5" type="INTEGER" padding="ZERO_LEFT" value="0" />
+					<Field name="ValConfirmacaoInstProtestoC19" type="BIGDECIMAL" length="12" format="DECIMAL_DD" padding="ZERO_LEFT" value="0" />
+					<Field name="Filler1" length="174" />
+					<Field name="DadosIgnorados2" length="23" />
+					<Field name="Filler2" length="9" />
+					<Field name="NumeroSequencialRegistro" type="INTEGER" length="6" padding="ZERO_LEFT" />
+				</GroupOfFields>
+			</Record>
+		</GroupOfRecords>
+	</FlatFile>
+
+</txg:Texgit>

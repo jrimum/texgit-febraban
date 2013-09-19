@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<txg:Texgit xmlns:txg="http://gilmatryx.googlepages.com/Texgit"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://gilmatryx.googlepages.com/Texgit file:////home/gilmar/WORKSPACE/TexgitSchema.xsd"
+	version="1.0-academic">
+	<FlatFile>
+		<layout>
+			<name>Arquivo-Retorno_CNAB400</name>
+			<version>Version 08, Published: 02/01/2012</version>
+			<description>
+				XML para funcionamento com o Jrimum.
+				Banco do Brasil
+				Cnab 400				
+				SWFactory Consultoria e Sistemas
+				www.swfactory.com.br
+				antoniorocha@gmail.com
+			</description>
+		</layout>
+		<GroupOfRecords>
+			<Record name="Header" description="Protocolo de comunicação">
+				<GroupOfFields>
+					<IdType name="CodigoRegistro" length="1" position="1" value="0" />	
+					<Field name="CodigoRetorno" length="1" />
+					<Field name="Filler" length="7" />
+					<Field name="Filler" length="2" />
+					<Field name="Filler" length="8" />
+					<Field name="Filler" length="7" />
+					<Field name="Filler" length="4" />
+					<Field name="Filler" length="1" />
+					<Field name="Filler" length="8" />
+					<Field name="Filler" length="1" />
+					<Field name="Filler" length="6" />
+					<Field name="Filler" length="30" />
+					<Field name="CodigoBanco" length="18" />
+					<Field name="DataGravacao" length="6" type="DATE" format="DATE_DDMMYY" />
+					<Field name="Filler" length="7" />
+					<Field name="Filler" length="42" />
+					<Field name="Filler" length="7" />
+					<Field name="Filler" length="238" />
+					<Field name="Filler" length="6" />									
+				</GroupOfFields>
+			</Record>
+			<Record name="TransacaoTitulo" repeatable="true">
+				<GroupOfFields>
+					<IdType name="CodigoRegistro" length="1" position="1" value="7" />
+					<Field name="Filler" length="2" />
+					<Field name="Filler" length="14" />
+					<Field name="CodigoEmpresa" length="14" />
+					<Field name="NumeroConvenio" length="7" />
+					<Field name="Filler" length="25" />
+					<Field name="NossoNumero" length="17" />
+					<Field name="TipoDeCobranca" length="1" />
+					<Field name="TipoDeCobrancaEspecifico" length="1" />
+					<Field name="Filler" length="4" />
+					<Field name="Filler" length="2" />
+					<Field name="Filler" length="3" />
+					<Field name="VariacaoCarteira" length="3" />
+					<Field name="Filler" length="1" />
+					<Field name="TaxaDesconto" length="5" type="BIGDECIMAL" format="DECIMAL_DD"   />
+					<Field name="TaxaIOF" length="5" type="BIGDECIMAL" format="DECIMAL_D" />
+					<Field name="Filler" length="1" />
+					<Field name="Carteira" length="2" />
+					<Field name="CodigoOcorrencia" length="2" type="INTEGER" value="0" padding="ZERO_LEFT" />
+					<Field name="DataOcorrencia" length="6" type="DATE" format="DATE_DDMMYY" />
+					<Field name="SeuNumero" length="10" />
+					<Field name="Filler" length="20" />
+					<Field name="DataVencimento" length="6" type="DATE" format="DATE_DDMMYY" />
+					<Field name="ValorTitulo" length="13" type="BIGDECIMAL" format="DECIMAL_DD" />
+					<Field name="CodigoBanco" length="3" />
+					<Field name="Filler" length="4" />
+					<Field name="Filler" length="1" />
+					<Field name="Filler" length="2" />
+					<Field name="DataCredito" length="6"   />
+					<Field name="ValorTarifa" length="7" type="BIGDECIMAL" format="DECIMAL_DD" />
+					<Field name="ValorOutrasDespesas" length="13" type="BIGDECIMAL" format="DECIMAL_DD" />
+					<Field name="ValorJurosDesconto" length="13" type="BIGDECIMAL" format="DECIMAL_DD" />
+					<Field name="ValorIOF" length="13" type="BIGDECIMAL" format="DECIMAL_DD" />
+					<Field name="ValorAbatimento" length="13" type="BIGDECIMAL" format="DECIMAL_DD" />
+					<Field name="ValorDesconto" length="13" type="BIGDECIMAL" format="DECIMAL_DD" />
+					<Field name="ValorPago" length="13" type="BIGDECIMAL" format="DECIMAL_DD" />
+					<Field name="ValorJuros" length="13" type="BIGDECIMAL" format="DECIMAL_DD" />
+					<Field name="ValorOutrosCreditos" length="13" type="BIGDECIMAL" format="DECIMAL_DD" />
+					<Field name="Filler" length="13" />
+					<Field name="ValorLancamento" length="13" type="BIGDECIMAL" format="DECIMAL_DD"/>
+					<Field name="IndicativoDebitoCredito" length="1" />
+					<Field name="IndicadorValor" length="1" />
+					<Field name="Filler" length="12" />
+					<Field name="Filler" length="1" />
+					<Field name="Filler" length="9" />
+					<Field name="Filler" length="7" />
+					<Field name="Filler" length="9" />
+					<Field name="Filler" length="7" />
+					<Field name="Filler" length="9" />
+					<Field name="Filler" length="7" />
+					<Field name="Filler" length="9" />
+					<Field name="Filler" length="2" />
+					<Field name="Filler" length="2" />
+					<Field name="NumeroSequencialRegistro" length="6" />
+				</GroupOfFields>
+			</Record>
+			<Record name="Trailler">
+				<GroupOfFields>
+					<IdType name="CodigoRegistro" length="1" position="1"  value="9"/>
+					<Field name="CodigoRetorno" length="1" />
+					<Field name="Filler" length="2" />
+					<Field name="CodigoBanco" length="3" />
+					<Field name="Filler" length="10" />
+					<Field name="QuantidadeTitulosEmCobranca" length="8" type="BIGDECIMAL" format="DECIMAL_DD" />
+					<Field name="ValorTotalTitulos" length="15" type="BIGDECIMAL" format="DECIMAL_DD" />
+					<Field name="Filler" length="8" />
+					<Field name="Filler" length="10" />
+					<Field name="Filler" length="8" />
+					<Field name="Filler" length="13" />
+					<Field name="Filler" length="8" />
+					<Field name="Filler" length="10" />
+					<Field name="Filler" length="8" />
+					<Field name="Filler" length="14" />
+					<Field name="Filler" length="8" />
+					<Field name="Filler" length="10" />
+					<Field name="Filler" length="8" />
+					<Field name="Filler" length="14" />
+					<Field name="Filler" length="8" />
+					<Field name="Filler" length="50" />
+					<Field name="Filler" length="8" />
+					<Field name="Filler" length="14" />
+					<Field name="Filler" length="8" />	
+					<Field name="Filler" length="147" />
+					<Field name="Filler" length="6" />			
+				</GroupOfFields>
+			</Record>
+		</GroupOfRecords>
+	</FlatFile>
+</txg:Texgit>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<txg:Texgit xmlns:txg="http://gilmatryx.googlepages.com/Texgit"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://gilmatryx.googlepages.com/Texgit file:////home/gilmar/WORKSPACE/TexgitSchema.xsd"
+	version="1.0-academic">
+
+	<FlatFile>
+		<layout>
+			<name>Arquivo-Custodia_Bradesco250</name>
+			<version>DESCONHECIDA</version>
+			<description>
+				CHEQUES CAPTURADOS NO CLIENTE
+				BANCO BRADESCO S/A
+				CUSTÓDIA DE CHEQUES - MOVIMENTO DE CHEQUES PRÉ-DATADOS
+			</description>
+		</layout>
+		<GroupOfRecords>
+			<Record name="Header" description="Protocolo de comunicação" >
+				<GroupOfFields>
+					<IdType name="IDReg" value="0" length="1" position="1" />
+					<Field name="DataGeracaoArquivo" type="DATE" format="DATE_YYYYMMDD" length="8" />
+					<Field name="IdentificacaoRotina" length="8" value="CUSTODIA" />
+					<Field name="AgenciaRecebedora" type="INTEGER" length="5" padding="ZERO_LEFT" value="0" />
+					<Field name="CodigoEmpresa" type="INTEGER" length="6" padding="ZERO_LEFT" value="0" />
+					<Field name="HoraCriacao" type="DATE" length="6">
+						<Formatter type="DATE" format="HHmmss" />
+					</Field>
+					<Field name="CodigoBanco" type="INTEGER" length="3" padding="ZERO_LEFT" value="237" />
+					<Field name="AgenciaCredito" type="INTEGER" length="5" padding="ZERO_LEFT" />
+					<Field name="ContaCredito" type="LONG" length="13" padding="ZERO_LEFT"  />
+					<Field name="DigitoContaCredito" type="INTEGER" length="1" padding="ZERO_LEFT" />
+					<Field name="Filler1" length="1" />
+					<Field name="Filial" length="5" padding="ZERO_LEFT" />
+					<Field name="Filler2" length="118" />
+					<Field name="NumeroSequencial" type="LONG" length="10" padding="ZERO_LEFT" value="1" />
+					<Field name="Filler3" length="60" />
+				</GroupOfFields>
+			</Record>
+			<Record name="Detalhe" repeatable="true">
+				<GroupOfFields>
+					<IdType name="IDReg" value="1" length="1" position="1" />
+					<Field name="CompeDestino" type="INTEGER" length="3" padding="ZERO_LEFT" /> 
+					<Field name="BancoApresentante" type="INTEGER" length="3" padding="ZERO_LEFT" /> 
+					<Field name="AgenciaDestino" type="INTEGER" length="4" padding="ZERO_LEFT" /> 
+					<Field name="DV1" type="INTEGER" length="1" padding="ZERO_LEFT" /> 
+					<Field name="ContaCorrente" type="LONG" length="12" padding="ZERO_LEFT"  />
+					<Field name="DV2" type="INTEGER" length="1" padding="ZERO_LEFT" />
+					<Field name="NumeroCheque" type="INTEGER" length="6" padding="ZERO_LEFT" />
+					<Field name="DV3" type="INTEGER" length="1" padding="ZERO_LEFT" />
+					<Field name="ValorCheque" type="BIGDECIMAL" length="17" format="DECIMAL_DD" padding="ZERO_LEFT" value="0" />
+					<Field name="Tipificacao" type="INTEGER" length="1" padding="ZERO_LEFT" />
+					<Field name="DataMovimento" type="DATE" format="DATE_YYYYMMDD" length="8" />
+					<Field name="DataVencimento" type="DATE" format="DATE_YYYYMMDD" length="8" />
+					<Field name="CPRF-Raiz" type="LONG" length="9" padding="ZERO_LEFT" /> 
+					<Field name="CPRF-Filial" type="INTEGER" length="5" padding="ZERO_LEFT" /> 
+					<Field name="CPRF-DV" type="INTEGER" length="2" padding="ZERO_LEFT" /> 
+					<Field name="Carteira" type="INTEGER" length="3" padding="ZERO_LEFT" value="0" /> 
+					<Field name="NumeroContrato" length="20" padding="ZERO_LEFT" value="0" /> 
+					<Field name="NumeroBordero" type="INTEGER" length="7" padding="ZERO_LEFT" /> 
+					<Field name="CompeAcolhimento" type="INTEGER" length="3" padding="ZERO_LEFT" value="0" /> 
+					<Field name="CodigoTipoCaptura" type="INTEGER" length="4" padding="ZERO_LEFT" /> 
+					<Field name="Reduzido" length="25" padding="WHITE_SPACE_LEFT" />
+					<Field name="Filler1" length="36" />
+					<Field name="NumeroSequencial" type="LONG" length="10" padding="ZERO_LEFT" value="0" />
+					<Field name="Filler2" length="60" />
+				</GroupOfFields>
+			</Record>
+			<Record name="Trailler">
+				<GroupOfFields>
+					<IdType name="IDReg" value="9" length="1" position="1" />
+					<Field name="DataGeracaoArquivo" type="DATE" format="DATE_YYYYMMDD" length="8" />
+					<Field name="IdentificacaoRotina" length="8" value="CUSTODIA" />
+					<Field name="QuantidadeRegistros" type="LONG" length="9" padding="ZERO_LEFT" value="0" />
+					<Field name="ValorTotalArquivo" type="BIGDECIMAL" length="17" format="DECIMAL_DD" padding="ZERO_LEFT" value="0" />
+					<Field name="Filler1" length="137" />
+					<Field name="NumeroSequencial" type="LONG" length="10" padding="ZERO_LEFT" value="0" />
+					<Field name="Filler2" length="60" />
+				</GroupOfFields>
+			</Record>
+		</GroupOfRecords>
+	</FlatFile>
+
+</txg:Texgit>

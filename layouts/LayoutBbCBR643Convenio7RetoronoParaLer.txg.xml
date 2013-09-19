@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<txg:Texgit xmlns:txg="http://gilmatryx.googlepages.com/Texgit"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://gilmatryx.googlepages.com/Texgit file:////home/gilmar/WORKSPACE/TexgitSchema.xsd"
+	version="1.0-academic">
+
+	<FlatFile>
+		<layout>
+			<name>Arquivo-Retorno_BancoDoBrasilCBR643 do convênio de 7 posições</name>
+			<version>Version Maio/11, Published: 2011/05/16</version>
+			<description>
+				Layout para Cobrança.
+
+				a) - Nome do Arquivo /DATA SET NAME/ = CBR643.,             
+          	    b) - Tamanho do registro= 400 bytes.,                       
+                c) - Organizacao = sequencial.,                             
+                d) - Formato dos registros =                                
+                   - FB /Fixos Blocados/                                  
+                   - Formato dos campos /9/ - numérico                    
+                                    /X/ - alfanumérico
+                e) - Os campos do arquivo retorno que possuirem DATA no formato  /DDMMAA/, conterao..                                        
+                e.1- para ano igual a 2001 /DDMMAA/ - /AA/ igual a 01.,     
+                e.2- para ano igual a 2002 /DDMMAA/ - /AA/ igual a 02., 
+                     e assim sucessivamente ateh o ano 2069.                
+                
+				ARQUIVO FORMATO CBR RETORNO, REGISTROS:
+				 
+				1  - HEADER - registro de abertura do arquivo.             
+                Contem as informacoes da empresa convenente e         
+                agencia centralizadora do convenio.,                  
+                
+                2  - DETALHE - contem as informacoes detalhadas do         
+                titulo, cedente, sacado e instrucoes para o           
+                processamento                                         
+                
+                3  - DETALHE-AUXILIAR - contem as informacoes detalhadas   
+                sobre o partilhamento do titulo e a destinacao dos    
+                creditos.,                                            
+                
+                4  - TRAILLER - eh o registro de encerramento do arquivo.  
+			</description>
+		</layout>
+		<GroupOfRecords>
+			<Record name="Header" description="Protocolo de comunicação">
+				<GroupOfFields>
+					<IdType name="IDReg" value="0" length="1" position="1" />
+					<Field name="IdentificacaoRetorno" value="2" length="1" />
+					<Field name="LiteralRetorno" value="RETORNO" length="7" />
+					<Field name="CodigoDeServico" value="01" length="2" padding="ZERO_LEFT" />
+					<Field name="LiteralServico" value="COBRANCA" length="8" />
+					<Field name="Filler1" length="7" />
+					<Field name="PrefixoDaAgencia" length="4" type="INTEGER" padding="ZERO_LEFT" />
+					<Field name="PrefixoDaAgenciaDV" length="1" type="CHARACTER" />
+					<Field name="NumeroDaContaCorrente" length="8" type="INTEGER" />
+					<Field name="DigitoVerigicadorDaContaCorrente" length="1" />
+					<Field name="Filler2" length="6" />
+					<Field name="NomeDaEmpresa" length="30" />
+					<Field name="NomeBanco" length="18" />
+					<Field name="DataGravacaoArquivo" length="6" type="DATE" format="DATE_DDMMYY" />
+					<Field name="NumeroDoAvisoBancario" length="7" />
+					<Field name="Filler3" length="42" />
+					<Field name="NumeroConvenio"  length="7"/>
+					<Field name="Filler4" length="238" />
+					<Field name="NumeroSequencialRegistro" type="INTEGER" length="6" />
+				</GroupOfFields>
+			</Record>
+			<Record name="TransacaoTitulo" repeatable="true">
+				<GroupOfFields>
+					<IdType name="IDReg" value="7" length="1" position="1" />
+					<Field name="DadosIgnorados1" length="37" />
+					<Field name="NumeroControleDoParticipante" length="25" />
+					<Field name="NossoNumeroComDigito" length="17"/>
+					<Field name="TipoDeCobranca" length="1" type="INTEGER" />
+					<Field name="TipoDeCobrancaAnterior" length="1" type="INTEGER" />
+					<Field name="DiasParaCalculo" length="4" type="INTEGER" />
+					<Field name="CodigoDeMotivoDeOcorrencia" length="2" type="INTEGER" value="0" padding="ZERO_LEFT" />
+					<Field name="PrefixoDoTitulo" length="3" />
+					<Field name="VariacaoDaCarteira" length="3" />
+					<Field name="ContaCaucao" length="1" />
+					<Field name="TaxaDesconto" length="5" type="INTEGER"/>
+					<Field name="TaxaIOF" length="4" type="INTEGER" />
+					<Field name="NaoIdentificado" length="1"  />
+					<Field name="Filler" length="1" />
+					<Field name="Carteira" length="2" type="INTEGER" />
+					<Field name="CodigoDeOcorrencia" length="2" type="INTEGER" />
+					<Field name="DataDaOcorrencia" length="6" type="DATE" format="DATE_DDMMYY" />
+					<Field name="NumeroDoDocumento" length="10" />
+					<Field name="Filler2" length="20"  />
+					<Field name="Vencimento" type="DATE" format="DATE_DDMMYY" length="6"  />
+					<Field name="Valor" type="BIGDECIMAL" format="DECIMAL_DD" length="13"  />
+					<Field name="CodigoCompensacaoBancoRecebedor" length="3"  />
+					<Field name="PrefixoDaAgenciaRecebedora" type="INTEGER" length="4"  />
+					<Field name="DV-DaAgenciaRecebedoraOuServicoDeCompensacao" type="CHARACTER" length="1"  />
+					<Field name="EspecieDoTitulo" length="2" type="INTEGER" />
+					<Field name="DataDoCredito" length="6" type="DATE" format="DATE_DDMMYY" />
+					<Field name="ValorDaTarifa" type="BIGDECIMAL" length="7" value="0" format="DECIMAL_DD" padding="ZERO_LEFT" />
+					<Field name="OutrasDespesas" type="BIGDECIMAL" length="13" value="0" format="DECIMAL_DD" padding="ZERO_LEFT" />
+					<Field name="JurosDoDesconto" type="BIGDECIMAL" format="DECIMAL_DD" length="13" value="0" />
+					<Field name="IOF_DoDesconto" type="BIGDECIMAL" format="DECIMAL_DD" length="13" value="0" />
+					<Field name="ValorDoAbatimento" type="BIGDECIMAL" format="DECIMAL_DD" length="13" value="0" />
+					<Field name="DescontoConcedido" type="BIGDECIMAL" format="DECIMAL_DD" length="13" value="0" />
+					<Field name="ValorRecebido" type="BIGDECIMAL" format="DECIMAL_DD" length="13" value="0" />
+					<Field name="JurosDeMora" type="BIGDECIMAL" format="DECIMAL_DD" length="13" value="0" />
+					<Field name="OutrosRecebimentos" type="BIGDECIMAL" format="DECIMAL_DD" length="13" value="0" />
+					<Field name="AbatimentoNaoAproveitadoPeloSacado" type="BIGDECIMAL" format="DECIMAL_DD" length="13" value="0" />
+					<Field name="ValorDoLancamento" type="BIGDECIMAL" format="DECIMAL_DD" length="13" value="0" />
+					<Field name="IndicativoDeLancamento" type="INTEGER" length="1"  />
+					<Field name="IndicadorDeValor" type="INTEGER" length="1"  />
+					<Field name="ValorDoReajuste" type="BIGDECIMAL" format="DECIMAL_DD" length="13"  />
+					<Field name="Filler3" length="59" />
+					<Field name="OrigemDoPagamento" blankAccepted="true" length="2" type="INTEGER" value="0" padding="ZERO_LEFT"/>
+					<Field name="NumeroSequencialRegistro" type="INTEGER" length="6" padding="ZERO_LEFT" />
+				</GroupOfFields>
+			</Record>
+			<Record name="Trailler">
+				<GroupOfFields>
+					<IdType name="IDReg" value="9" length="1" position="1" />
+					<Field name="Constante2" length="1" value="2" type="INTEGER" />
+					<Field name="Constante01" length="2" value="01" type="INTEGER" />
+					<Field name="Constante001" length="3" value="001" type="INTEGER" />
+					<Field name="Filler" length="10"  />
+					<Field name="QuantidadeDeTitulosEmCobranca" length="8" type="INTEGER" padding="ZERO_LEFT" />
+					<Field name="ValorTotalEmCobranca" length="15" type="BIGDECIMAL" format="DECIMAL_DD"/>
+					<Field name="NumeroDoAvisoBancario" length="8" />
+					<Field name="CobrancaSimplesFiller" length="9"  />
+					<Field name="CobrancaVinculadaQuantidadeTitulos" length="8" type="INTEGER" />
+					<Field name="CobrancaVinculadaValorTotal" length="15" type="BIGDECIMAL" format="DECIMAL_DD"/>
+					<Field name="CobrancaVinculadaNumeroAviso" length="8" />
+					<Field name="CobrancaVinculadaFiller" length="10" />
+					<Field name="CobrancaCaucionadaQuantidadeDeTitulos" length="8" type="INTEGER"/>
+					<Field name="CobrancaCaucionadaValorTotal" length="15" type="BIGDECIMAL" format="DECIMAL_DD"/>
+					<Field name="CobrancaCaucionadaNumeroDoAviso" length="8"  />
+					<Field name="CobrancaCaucionadaFiller" length="10" />
+					<Field name="CobrancaDescontadaQuantidadeDeTitulos" length="8" />
+					<Field name="CobrancaDescontadaValorTotal" length="15" type="BIGDECIMAL" format="DECIMAL_DD" />
+					<Field name="CobrancaDescontadaNumeroDoAviso" length="8" />
+					<Field name="CobrancaDescontadaFiller" length="50" />
+					<Field name="CobrancaVendorQuantidadeDeTitulos" length="8" type="INTEGER" />
+					<Field name="CobrancaVendorValorTotal" length="15" type="BIGDECIMAL" format="DECIMAL_DD" />
+					<Field name="CobrancaVendorNumeroDoAviso" length="8" />
+					<Field name="CobrancaVendorFiller" length="143" />
+					<Field name="SequencialDoRegistro" length="6" type="INTEGER"/>
+				</GroupOfFields>
+			</Record>
+		</GroupOfRecords>
+	</FlatFile>
+
+</txg:Texgit>

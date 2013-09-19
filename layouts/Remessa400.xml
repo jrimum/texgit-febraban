@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<txg:Texgit xmlns:txg="http://gilmatryx.googlepages.com/Texgit"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://gilmatryx.googlepages.com/Texgit file:////home/gilmar/WORKSPACE/TexgitSchema.xsd"
+	version="1.0-academic">
+
+
+	<FlatFile>
+		<layout>
+			<name>
+				Layout de Geração de arquivos remessa cnab400
+			</name>
+			<version>Versão 0.0.1</version>
+			<description>
+				Através deste layout, você poderá gerar arquivos para remessa cnab400
+			</description>
+		</layout>
+		<GroupOfRecords>
+			<Record name="Header">
+				<GroupOfFields>
+					<IdType name="IDReg" value="0" length="1" position="1" />
+
+					<Field name="IdentificacaoRemessa" value="1" type="INTEGER" length="1" padding="ZERO_LEFT"/>
+					<Field name="LiteralRemessa" value="REMESSA" length="7" />
+					<Field name="CodigoServico" value="01" type="INTEGER" length="2" padding="ZERO_LEFT"/>
+					<Field name="LiteralServico" value="COBRANCA" length="15" />
+					<Field name="CodigoEmpresa"  type="INTEGER" length="20" padding="ZERO_LEFT"/>
+					<Field name="NomeEmpresa" length="30" />
+					<Field name="NumeroBanco" type="INTEGER" value="237" length="3" padding="ZERO_LEFT"/>
+					<Field name="NomeBanco" length="15" value="BRADESCO" />
+					<Field name="DataGravacaoArquivo" type="DATE" length="6">
+					<Formatter type="DATE" format="ddMMyy" />
+					</Field>
+					<Field name="Branco" value=" " length="8" />
+					<Field name="IdentificacaoSistema" value="MX" length="2" />
+					<Field name="NroSequencialArquivo" type="INTEGER" length="7" padding="ZERO_LEFT"/>
+					<Field name="Branco2" value=" " length="277" />
+					<Field name="NroSequencialRegistroH" type="INTEGER" length="6" padding="ZERO_LEFT"/>
+				</GroupOfFields>
+			</Record>
+			<Record name="Detalhe-Transacao" repeatable="true">
+				<GroupOfFields>
+					<IdType name="IDReg" value="1" length="1" position="1" />
+
+					<Field name="AgenciaDebito" length="5" value=" "/>
+					<Field name="DigitoAgenciaDebito" value=" " length="1" />
+					<Field name="RazaoContaCorrenteDebito" length="5" value=" " />
+					<Field name="ContaCorrenteDebito" length="7" value=" " />
+					<Field name="DigitoContaCorrenteDebito" length="1" value=" "/>
+					<Field name="Zero" type="INTEGER" length="1" value="0"/>
+					<Field name="Carteira" type="INTEGER" length="3" padding="ZERO_LEFT"/>
+					<Field name="AgenciaCedente" type="INTEGER" length="5" padding="ZERO_LEFT"/>
+					<Field name="ContaCorrente" type="INTEGER" length="7" padding="ZERO_LEFT"/>
+					<Field name="DigitoContaCorrente" type="INTEGER" length="1" padding="ZERO_LEFT"/>
+					<Field name="NroControleParticipante" length="25" value="0"/>
+					<Field name="CodigoBanco" type="INTEGER" length="3" padding="ZERO_LEFT" value="237"/>
+					<Field name="Zeros" type="INTEGER" length="5" padding="ZERO_LEFT" value="0"/>
+					<Field name="NossoNumero" type="INTEGER" length="12" padding="ZERO_LEFT"/>					
+					<Field name="DescontoBonificacaoDia" type="INTEGER" length="10" value="0" padding="ZERO_LEFT"/>
+					<Field name="EmissaoPapeletaCobranca" type="INTEGER" length="1" padding="ZERO_LEFT"/>
+					<Field name="EmissaoPapeletaDebitoAutomatico" length="1" />
+					<Field name="Branco3" length="10" value=" "/>
+					<Field name="IndicadorRateioCredito" length="1" value=" "/>
+					<Field name="AvisoDebitoAutomatico" type="INTEGER" length="1" padding="ZERO_LEFT"/>
+					<Field name="Branco4" length="2" value=" "/>
+					<!-- 01  Remessa -->
+					<Field name="IdentificacaoOcorrencia" type="INTEGER" length="2" value="01" padding="ZERO_LEFT"/>
+					<Field name="NDocumento" length="10"/>
+					<Field name="DataVencimentoTitulo" type="DATE" length="6">
+					<Formatter type="DATE" format="ddMMyy" />
+					</Field>
+					<Field name="ValorTitulo" type="INTEGER" length="13" padding="ZERO_LEFT"/>
+					<!-- 0 quando Remessa -->
+					<Field name="BancoEncarregadoCobranca" type="INTEGER" length="3" value="0" padding="ZERO_LEFT"/>
+					<Field name="AgenciaDepositaria" type="INTEGER" length="5" value="0" padding="ZERO_LEFT"/>
+					<Field name="EspecieTitulo" type="INTEGER" length="2" padding="ZERO_LEFT"/>
+					<Field name="Identificacao" length="1" value="N"/>
+					<Field name="DataEmissaoTitulo" type="DATE" length="6">
+					<Formatter type="DATE" format="ddMMyy" />
+					</Field>
+					<Field name="1Instrucao" type="INTEGER" length="2" padding="ZERO_LEFT"/>
+					<Field name="2Instrucao" type="INTEGER" length="2" padding="ZERO_LEFT"/>
+					<Field name="MoraDiaria" type="INTEGER" length="13" padding="ZERO_LEFT"/>
+					<Field name="DataLimiteDesconto" type="INTEGER" length="6" value="0" padding="ZERO_LEFT"/>
+					<Field name="ValorDesconto" type="INTEGER" length="13" value="0" padding="ZERO_LEFT"/>
+					<Field name="ValorIOF" type="INTEGER" length="13" value="0" padding="ZERO_LEFT"/>
+					<Field name="ValorAbatimento" type="INTEGER" length="13"  value="0" padding="ZERO_LEFT"/>
+					<Field name="IdentificacaoInscricaoSacado" type="INTEGER" length="2" padding="ZERO_LEFT"/>
+					<Field name="NInscricaoSacado" type="INTEGER" length="14" padding="ZERO_LEFT"/>
+					<Field name="NomeSacado" length="40"/>
+					<Field name="EnderecoCompleto" length="40"/>
+					<Field name="1Mensagem" length="12" value=" " />
+					<Field name="Cep" length="8"/>
+					<Field name="Avalista-2Mensagem" length="60"/>
+					<Field name="NroSequencialRegistroD" type="INTEGER" length="6" padding="ZERO_LEFT"/>
+				</GroupOfFields>				
+			</Record>
+			<Record name="Trailler">
+				<GroupOfFields>
+					<IdType name="IDReg" value="9" length="1" position="1" />
+					<Field name="Branco5" value=" " length="393" />
+					<Field name="NroSequencialRegistroT" type="INTEGER" length="6" padding="ZERO_LEFT"/>
+				</GroupOfFields>
+			</Record> 
+		</GroupOfRecords>
+	</FlatFile>
+	
+</txg:Texgit>

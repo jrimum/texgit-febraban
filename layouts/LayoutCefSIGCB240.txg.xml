@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<txg:Texgit xmlns:txg="http://gilmatryx.googlepages.com/Texgit"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://gilmatryx.googlepages.com/Texgit file:////home/gilmar/WORKSPACE/TexgitSchema.xsd"
+	version="1.0-academic">
+	
+	<FlatFile>
+		<layout>
+			<name>
+				Guia do Usuário para SIGCB 240
+			</name>
+			<version>1.0 / 25 MAI 2012</version>
+			<description>
+			
+				GERAL:
+					Layout de intercâmbio de dados para Guia SIGCB 240 
+					Padrão FEBRABAN da cobrança bancária da Caixa Econômica Federal.
+			
+				OBJETIVO:
+					
+					Viabilizar o tratamento do arquivo retorno
+					
+				DESCRIÇÃO:
+				
+					Os leiautes de arquivos retornos são de exclusividade para Entidades que utilizarão sistemas/aplicativos próprios, 
+					para prover adequação e viabilizar o tratamento do arquivo que será enviado pela CAIXA na data de crédito do repasse da arrecadação.
+
+					Tipo de arquivo eletrônico:
+						* Arquivo Retorno/Prestação de Contas - arquivo que é disponibilizado pela CAIXA à
+						Entidade, contendo a relação das guias pagas, identificando: arrecadação direta ou indireta,
+						canal de recebimento, cheque ou dinheiro, valor pago, valor da contribuição, data do
+									
+				TAMANHO DOS REGISTROS:
+					240 Bytes
+					
+				DISPOSIÇÃO DO ARQUIVO RETORNO:
+				
+					HEADER DE ARQUIVO
+					HEADER DE LOTE - Serviço/Produto = Cobrança-Retorno
+					SEGMENTO T (OBRIGATÓRIO) - Arrecadação Direta/Indireta e Tarifa de arrecadação ou Estorno
+					SEGMENTO U (OBRIGATÓRIO) - Arrecadação Direta/Indireta e Tarifa de arrecadação ou Estorno
+					TRAILER DE LOTE - Serviço/Produto = Cobrança-Retorno
+					TRAILLER DE ARQUIVO
+					
+			</description>
+		</layout>
+		
+		<GroupOfRecords>
+		
+		<!-- Início do arquivo -->
+			<Record name="HeaderArquivo" description="PROTOCOLO DE COMUNICAÇÃO DE ARQUIVO">
+				<GroupOfFields>
+					<!-- Identificador do registro 0 -->
+					<IdType name="TipoRegistro"  position="3" value="0" length="1" />
+					<Field name="CodigoBanco" value="104" length="3" />
+					<Field name="LoteServico" value="0000" length="4" />
+					<Field name="Filler" value=" " length="9" />
+					<Field name="Empresa-TipoInscricao" type="INTEGER" length="1" />
+					<Field name="Empresa-CPRF" length="14" padding="ZERO_LEFT" />
+					<Field name="Empresa-CodigoConvenio" length="20" />
+					<Field name="Empresa-AgenciaNumero" type="INTEGER" padding="ZERO_LEFT" length="5" />
+					<Field name="Empresa-AgenciaDv" length="1" />
+					<Field name="Empresa-ContaCorrenteNumero" type="LONG" padding="ZERO_LEFT" length="12" />
+					<Field name="Empresa-ContaCorrenteDv" length="1" />
+					<Field name="Empresa-DvAgenciaConta" length="1" />
+					<Field name="Empresa-Nome" length="30" />
+					<Field name="NomeBanco" length="30" />
+					<Field name="Filler2" value=" " length="10" />
+					<Field name="Arquivo-CodigoRetorno" type="INTEGER" value="2" length="1" />
+					<Field name="Arquivo-GeracaoData" type="DATE"  format="DATE_DDMMYYYY" length="8" />
+					<Field name="Arquivo-GeracaoHora" length="6">
+						<Formatter type="DATE" format="hhmmss" />
+					</Field>
+					<Field name="Arquivo-SequenciaNumero" type="INTEGER" padding="ZERO_LEFT" length="6" />
+					<Field name="Arquivo-LayoutVersao" type="INTEGER" padding="ZERO_LEFT" length="3" /> 
+					<Field name="Arquivo-GravacaoDensidade" type="INTEGER" padding="ZERO_LEFT" length="5" /> 
+					<!-- Provavelmente não necessários -->
+					<Field name="DadosIgnorados" length="40" />
+					<Field name="Filler3" length="29" />
+				</GroupOfFields>
+			</Record>
+			
+			<!-- Início do lote Serviço/Produto = Cobrança-Retorno -->
+			<Record name="HeaderLote" description="PROTOCOLO DE COMUNICAÇÃO DE LOTE">
+				<GroupOfFields>
+					<!-- Identificador do registro 1 -->
+					<IdType name="TipoRegistro"  position="3" value="1" length="1" />
+					<Field name="CodigoBanco" value="104" length="3" />
+					<Field name="LoteServico" type="INTEGER" value="1" padding="ZERO_LEFT" length="4" />
+					<!-- Provavelmente não necessários, mapeie se precisar ou quiser -->
+					<Field name="DadosIgnorados" length="95" />
+					<!-- É bom ver as mensagens do lote -->
+					<Field name="Mensagem1" length="40" />
+					<Field name="Mensagem2" length="40" />
+					<Field name="Retorno-Numero" type="INTEGER" padding="ZERO_LEFT" length="8" />
+					<Field name="Retorno-DataGravacao" type="DATE"  format="DATE_DDMMYYYY" length="8" />
+					<Field name="Filler" length="41" />
+				</GroupOfFields>
+			</Record>
+			
+			<!-- Arrecadação SEGMENTO T -->
+			<Record name="Arrecadacao-Segmento-T" repeatable="true" description="Dados do título">
+				<GroupOfFields>
+					<!-- Identificador do registro T -->
+					<IdType name="CodigoSegmento"  position="5" value="T" length="1" />
+					<Field name="CodigoBanco" value="104" length="3" />
+					<Field name="LoteServico" type="INTEGER" value="1" padding="ZERO_LEFT" length="4" />
+					<Field name="TipoRegistro" value="3" length="1" />
+					<Field name="NumeroSequencialRegistro" type="INTEGER" padding="ZERO_LEFT" length="5" />
+					<Field name="DadosIgnorados" length="1" />
+					<Field name="CodigoMovimento" length="2" />
+					
+					<Field name="AgenciaMantenedora" length="5" />
+					<Field name="DVAgenciaMantenedora" length="1" />
+					<Field name="CodigoCedente" length="6" />
+					<Field name="DadosIgnorados" length="10" />
+					
+					<Field name="ModalidadeNN" length="2" />
+					<Field name="NossoNumero" length="15" />
+					<Field name="DadosIgnorados" length="1" />
+					<Field name="Carteira" length="1" />
+					<Field name="NumDocumento" length="11" />
+					<Field name="DadosIgnorados" length="4" />
+					<Field name="Vencimento" type="DATE"  format="DATE_DDMMYYYY" length="8" />
+					<Field name="Valor"  type="BIGDECIMAL" format="DECIMAL_DD" padding="ZERO_LEFT" length="15" />
+					
+					<Field name="NumeroBanco" length="3" />
+					<Field name="AgenciaCobradoraRecebedora" length="5" />
+					<Field name="DVAgenciaCobradoraRecebedora" length="1" />
+					<Field name="IdentificacaoTituloEmpresa" length="25" />
+					<Field name="CodigoMoeda" length="2" />
+					<Field name="TipoInscricao" length="1" />
+					<Field name="NumeroInscricao" length="15" />
+					<Field name="Nome" length="40" />
+					<Field name="NumContratoOPCredito" length="10" />
+					<Field name="ValorTarifaCustas" length="15" />
+					<Field name="IdentificacaoRejeicao" length="10" />
+					
+					
+					<Field name="DadosIgnorados2" length="17" />
+				</GroupOfFields>
+				<GroupOfInnerRecords>
+					<!-- Arrecadação SEGMENTO U -->
+					<Record name="Arrecadacao-Segmento-U" repeatable="true" description="Mais dados do título">
+						<GroupOfFields>
+							<!-- Identificador do registro U -->
+							<IdType name="CodigoSegmento"  position="5" value="U" length="1" />
+							<Field name="CodigoBanco" value="104" length="3" />
+							<Field name="LoteServico" type="INTEGER" value="1" padding="ZERO_LEFT" length="4" />
+							<Field name="TipoRegistro" value="3" length="1" />
+							<Field name="NumeroSequencialRegistro" type="INTEGER" padding="ZERO_LEFT" length="5" />
+							<Field name="Filler" value=" " length="1" /> 
+							<!-- 6-Liquidação de arrecadação e tarifa de arrecadação 9-Estorno de -->
+							<Field name="CodigoMovimento" type="INTEGER" padding="ZERO_LEFT" length="2" />
+							<!-- Mapeamento de alguns dados importantes -->
+							<Field name="Valor-MultaJuros"  type="BIGDECIMAL" format="DECIMAL_DD" padding="ZERO_LEFT" length="15" />
+							<Field name="Valor-Desconto"  type="BIGDECIMAL" format="DECIMAL_DD" padding="ZERO_LEFT" length="15" />
+							<Field name="Valor-Abatimento"  type="BIGDECIMAL" format="DECIMAL_DD" padding="ZERO_LEFT" length="15" />
+							<Field name="Valor-IOF"  type="BIGDECIMAL" format="DECIMAL_DD" padding="ZERO_LEFT" length="15" />
+							<Field name="Valor-Pago"  type="BIGDECIMAL" format="DECIMAL_DD" padding="ZERO_LEFT" length="15" />
+							<Field name="Valor-LiquidoCreditado"  type="BIGDECIMAL" format="DECIMAL_DD" padding="ZERO_LEFT" length="15" />
+							
+							<Field name="Valor-OutrasDespesas"  type="BIGDECIMAL" format="DECIMAL_DD" padding="ZERO_LEFT" length="15" />
+							<Field name="Valor-OutrosCreditos"  type="BIGDECIMAL" format="DECIMAL_DD" padding="ZERO_LEFT" length="15" />
+							<Field name="Data-Ocorrencia" type="DATE"  format="DATE_DDMMYYYY" length="8" />
+							<Field name="Data-Efetivacao" type="DATE"  format="DATE_DDMMYYYY" length="8" />
+							
+							<Field name="DadosIgnorados2" length="4" />
+							<Field name="Data-Debito-Tarifa" type="DATE"  format="DATE_DDMMYYYY" length="8" />
+							<Field name="CodigoSacado" length="15" />
+							<Field name="Filler" value=" " length="30" />
+							<Field name="CodigoBcoCorr" length="3" />
+							<Field name="NNBcoCorr" length="20" />
+							
+							
+							<Field name="DadosIgnorados" length="7" />
+						</GroupOfFields>
+					</Record>
+				</GroupOfInnerRecords>
+			</Record>
+			
+			<!-- Final do lote -->
+			<Record name="TraillerLote" description="FINALIZADOR DO LOTE">
+				<GroupOfFields>
+					<!-- Identificador do registro 5 -->
+					<IdType name="TipoRegistro"  position="3" value="5" length="1" />
+					<Field name="CodigoBanco" value="104" length="3" />
+					<Field name="LoteServico" type="INTEGER" value="1" padding="ZERO_LEFT" length="4" />
+					<Field name="Filler" value=" " length="9" />
+					<Field name="QtdRegistros" type="INTEGER" length="6" padding="ZERO_LEFT" />
+					<!-- Mapeie esse espaço se quiser -->
+					<Field name="DadosIgnorados" length="100" />
+					<Field name="Filler2" length="117" />
+				</GroupOfFields>
+			</Record>
+			
+		<!-- Final do arquivo -->
+			<Record name="TraillerArquivo" description="FINALIZADOR DO ARQUIVO">
+				<GroupOfFields>
+				 	<!-- Identificador do registro 9 -->
+					<IdType name="TipoRegistro"  position="3" value="9" length="1" />
+					<Field name="CodigoBanco" value="104" length="3" />
+					<Field name="LoteServico" value="9999" length="4" />
+					<Field name="Filler" value=" " length="9" />
+					<Field name="QtdLotes" type="INTEGER" value="1" length="6" padding="ZERO_LEFT" />
+					<Field name="QtdRegistros" type="INTEGER" length="6" padding="ZERO_LEFT" />
+					<Field name="QtdContas" type="INTEGER" value="0" length="6" padding="ZERO_LEFT" blankAccepted="true" />
+					<Field name="Filler2" length="205" />
+				</GroupOfFields>
+			</Record>
+			
+		</GroupOfRecords>
+		
+	</FlatFile>
+
+</txg:Texgit>

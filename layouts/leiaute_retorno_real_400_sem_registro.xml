@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<txg:Texgit xmlns:txg="http://gilmatryx.googlepages.com/Texgit"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://gilmatryx.googlepages.com/Texgit file:////home/gilmar/WORKSPACE/TexgitSchema.xsd"
+	version="1.0-academic">
+	<FlatFile>
+		<layout>
+			<name>Arquivo-Retorno_CNAB400</name>
+			<version>Version 08, Published: 02/01/2012</version>
+			<description>
+				XML para funcionamento com o Jrimum.
+				Banco Real
+				Cnab 400				
+				SWFactory Consultoria e Sistemas
+				www.swfactory.com.br
+				antoniorocha@gmail.com
+			</description>
+		</layout>
+		<GroupOfRecords>
+			<Record name="Header" description="Protocolo de comunicação">
+				<GroupOfFields>
+					<IdType name="CodigoRegistro" value="0" length="1" position="1" />	
+					<Field name="Filler" length="25" />
+					<Field name="CodigoRetorno" length="1" />
+					<Field name="Filler" length="4" />
+					<Field name="Filler" length="1" />
+					<Field name="Filler" length="7" />
+					<Field name="Filler" length="7" />
+					<Field name="Filler" length="30" />
+					<Field name="CodigoBanco" length="3" />
+					<Field name="Filler" length="15" />
+					<Field name="DataGravacao" length="6" type="DATE" format="DATE_DDMMYY" />
+					<Field name="Filler" length="8" />
+					<Field name="Filler" length="8" />
+					<Field name="Filler" length="278" />
+					<Field name="Filler" length="6" />										
+				</GroupOfFields>
+			</Record>
+			<Record name="TransacaoTitulo" repeatable="true">
+				<GroupOfFields>
+					<IdType name="CodigoRegistro" value="1" length="1" position="1" />
+					<Field name="InscricaoEmpresa" length="2" />
+					<Field name="NumeroInscricao" length="14" />
+					<Field name="Filler" length="1" />
+					<Field name="CodigoEmpresa" length="12" />
+					<Field name="Filler" length="7" />
+					<Field name="Filler" length="9" />
+					<Field name="NossoNumero" length="13" />
+					<Field name="Filler" length="48" />
+					<Field name="VariacaoCarteira" length="1" />
+					<Field name="CodigoOcorrencia" length="2" type="INTEGER" value="0" padding="ZERO_LEFT" />
+					<Field name="DataOcorrencia" length="6" type="DATE" format="DATE_DDMMYY" />
+					<Field name="Filler" length="30" />
+					<Field name="Filler" length="6" />
+					<Field name="ValorTitulo" length="13" type="BIGDECIMAL" format="DECIMAL_DD" />
+					<Field name="CodigoBanco" length="3" />
+					<Field name="Filler" length="5" />
+					<Field name="Filler" length="2" />
+					<Field name="Filler" length="3" />
+					<Field name="Filler" length="4" />
+					<Field name="Filler" length="58" />
+					<Field name="ValorDesconto" length="13" type="BIGDECIMAL" format="DECIMAL_DD" />
+					<Field name="ValorPago" length="13" type="BIGDECIMAL" format="DECIMAL_DD" />
+					<Field name="ValorJuros" length="13" type="BIGDECIMAL" format="DECIMAL_DD" />
+					<Field name="Filler" length="13" />
+					<Field name="FormaCredito" length="1" />
+					<Field name="Filler" length="2" />
+					<Field name="DataCredito" length="6" />
+					<Field name="Filler" length="93" />
+					<Field name="NumeroSequencialRegistro" length="6" />
+				</GroupOfFields>
+			</Record>
+			<Record name="Trailler">
+				<GroupOfFields>
+					<IdType name="CodigoRegistro" value="9" length="1" position="1" />
+					<Field name="CodigoRetorno" length="1" />
+					<Field name="Filler" length="2" />
+					<Field name="CodigoBanco" length="3" />
+					<Field name="Filler" length="8" />
+					<Field name="Filler" length="2" />
+					<Field name="QuantidadeTitulosEmCobranca" length="8" type="BIGDECIMAL" format="DECIMAL_DD" />
+					<Field name="ValorTotalTitulos" length="14" type="BIGDECIMAL" format="DECIMAL_DD" />
+					<Field name="Filler" length="355" />
+					<Field name="Filler" length="6" />	
+				</GroupOfFields>
+			</Record>
+		</GroupOfRecords>
+	</FlatFile>
+</txg:Texgit>

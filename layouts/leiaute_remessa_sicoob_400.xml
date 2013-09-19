@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<txg:Texgit xmlns:txg="http://gilmatryx.googlepages.com/Texgit"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://gilmatryx.googlepages.com/Texgit file:////home/gilmar/WORKSPACE/TexgitSchema.xsd"
+	version="1.0-academic">
+
+	<FlatFile>
+		<layout>
+			<name>Arquivo-RemessaCNAB400</name>
+			<version>Version 08, Published: 02/01/2012</version>
+			<description>
+				XML para funcionamento com o Jrimum.
+				Banco Sicoob
+				Cnab 400				
+				SWFactory Consultoria e Sistemas
+				www.swfactory.com.br
+				antoniorocha@gmail.com
+			</description>
+		</layout>
+		<GroupOfRecords>
+			<Record name="Header" description="Protocolo de comunicação" >
+				<GroupOfFields>
+					<IdType name="CodigoDoRegistro" value="0" length="1" position="1" />
+					<Field name="IdentificacaoRemessa" length="1" value="1" />
+					<Field name="LiteralRemessa" value="REMESSA"  length="7" />
+					<Field name="CodigoServico"  value="01" length="2" padding="ZERO_LEFT" />
+					<Field name="LiteralServico" value="COBRANCA" length="15" />
+					<Field name="CodigoEmpresa" length="20" />
+					<Field name="NomeEmpresa" length="30" />
+					<Field name="CodigoBanco" value="756" length="3" padding="ZERO_LEFT" />
+					<Field name="NomeBanco" length="15" value="BANCOOB" />
+					<Field name="DataGravacao" length="6" type="DATE" format="DATE_DDMMYY" />
+					<Field name="Filler" length="8" />
+					<Field name="IdentificacaoSistema" length="2" />
+					<Field name="NumeroSequencialRemessa" length="7" />
+					<Field name="Filler" length="277" />
+					<Field name="NumeroSequencialRegistro" length="6" padding="ZERO_LEFT" />
+				</GroupOfFields>
+			</Record>
+			
+			<Record name="TransacaoTitulo" repeatable="true">
+				<GroupOfFields>
+					<IdType name="CodigoRegistro" value="1" length="1" position="1" />
+					<Field name="AgenciaDebito" length="5" padding="ZERO_LEFT" />
+					<Field name="DigitoAgencia" length="1" />
+					<Field name="RazaoConta" length="5" padding="ZERO_LEFT" />
+					<Field name="ContaCorrente" length="7" padding="ZERO_LEFT" />
+					<Field name="DigitoConta" length="1" />
+					<Field name="CodigoEmpresa" length="17" />
+					<Field name="UsoEmpresa" length="25" />
+					<Field name="CodigoBanco" length="3" value="756" padding="ZERO_LEFT" />
+					<Field name="Filler" length="5" padding="ZERO_LEFT" />
+					<Field name="NossoNumero" length="12" padding="ZERO_LEFT" />
+					<Field name="DescontoBonificacao" length="10" padding="ZERO_LEFT" />
+					<Field name="CondicaoEmissao" length="1" />
+					<Field name="IdentificacaoDebitoAutomatico" length="1" />
+					<Field name="UsoBanco" length="10" />
+					<Field name="RateioCredito" length="1" />
+					<Field name="EnderecamentoDebitoAutomatico" length="1" />
+					<Field name="Filler" length="2" />
+					<Field name="CodigoOcorrencia" length="2" type="INTEGER" value="1" padding="ZERO_LEFT" />
+					<Field name="SeuNumero" length="10" />
+					<Field name="Vencimento" length="6" />
+					<Field name="ValorTitulo" length="13" type="BIGDECIMAL" format="DECIMAL_DD" padding="ZERO_LEFT" />
+					<Field name="CodigoBanco" length="3" padding="ZERO_LEFT" />
+					<Field name="AgenciaCobradora" length="5" padding="ZERO_LEFT" />
+					<Field name="EspecieTitulo" length="2" padding="ZERO_LEFT" />
+					<Field name="Aceite" length="1" />
+					<Field name="DataEmissao" length="6" type="DATE" format="DATE_DDMMYY" />
+					<Field name="PrimeiraInstrucao" length="2" value="05" padding="ZERO_LEFT" />
+					<Field name="SegundaInstrucao" length="2" value="10" padding="ZERO_LEFT" />
+					<Field name="ValorJuros" length="13" type="BIGDECIMAL" format="DECIMAL_DD" padding="ZERO_LEFT" />
+					<Field name="DataDesconto" length="6" padding="ZERO_LEFT" />
+					<Field name="ValorDesconto" length="13" type="BIGDECIMAL" format="DECIMAL_DD" padding="ZERO_LEFT" />
+					<Field name="ValorIOF" length="13" type="BIGDECIMAL" format="DECIMAL_DD" padding="ZERO_LEFT" />
+					<Field name="ValorAbatimento" length="13" type="BIGDECIMAL" format="DECIMAL_DD" padding="ZERO_LEFT" />
+					<Field name="TipoSacado" length="2" padding="ZERO_LEFT" />
+					<Field name="DocumentoSacado" length="14" padding="ZERO_LEFT" />
+					<Field name="NomeSacado" length="40" />
+					<Field name="EnderecoSacado" length="40" />
+					<Field name="PrimeiraMensagem" length="12" />
+					<Field name="CepSacado" length="8" padding="ZERO_LEFT" />
+					<Field name="Filler" length="1" />
+					<Field name="SacadorAvalista" length="59" />
+					<Field name="NumeroSequencialRegistro" length="6" padding="ZERO_LEFT" />
+				</GroupOfFields>
+				
+				
+			</Record>
+			
+			<Record name="Trailler">
+				<GroupOfFields>
+					<IdType name="CodigoDoRegistro" value="9" length="1" position="1" />
+					<Field name="Filler" length="393" />
+					<Field name="NumeroSequencialRegistro" length="6" padding="ZERO_LEFT" />		
+				</GroupOfFields>
+			</Record>
+		</GroupOfRecords>
+	</FlatFile>
+
+</txg:Texgit>
